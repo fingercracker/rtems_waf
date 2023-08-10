@@ -859,7 +859,11 @@ def _check_arch_bsps(req, config, path, archs, version):
 
 def _arch_from_arch_bsp(arch_bsp):
     fields = arch_bsp.split('-')
-    rtems_field_index = next(i for i, field in enumerate(fields) if field.startswith('rtems'))
+    try:
+        rtems_field_index = next(i for i, field in enumerate(fields) if field.startswith('rtems'))
+    except Exception as e:
+        return None
+
     return '-'.join(fields[:(rtems_field_index + 1)])
 
 
