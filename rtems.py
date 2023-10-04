@@ -819,9 +819,12 @@ def _find_installed_arch_bsps(config, path, archs, version):
     arch_bsps = []
     if config is None:
         for f in os.listdir(_pkgconfig_path(path)):
-            if f.endswith('.pc'):
-                if _arch_from_arch_bsp(f[:-3]) in archs:
-                    arch_bsps += [f[:-3]]
+            try:
+                if f.endswith('.pc'):
+                    if _arch_from_arch_bsp(f[:-3]) in archs:
+                        arch_bsps += [f[:-3]]
+            except StopIteration:
+                pass
     else:
         ab = subprocess.check_output([config, '--list-format'])
         ab = ab[:-1].replace('"', '')
