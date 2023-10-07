@@ -221,6 +221,7 @@ def configure(conf, bsp_configure=None):
         conf.msg('Show commands', show_commands)
         conf.msg('Long commands', long_commands)
 
+        import pdb; pdb.set_trace()
         arch = _arch_from_arch_bsp(ab)
         bsp = _bsp_from_arch_bsp(ab)
 
@@ -548,6 +549,7 @@ def check_networking(ctx):
 
 def arch(arch_bsp):
     """ Given an arch/bsp return the architecture."""
+    import pdb; pdb.set_trace()
     return _arch_from_arch_bsp(arch_bsp).split('-')[0]
 
 
